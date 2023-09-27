@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Body
 from fastapi.responses import JSONResponse
 import json
+from typing_extensions import Annotated
 
 from app.controller.access import get_current_active_user, verify_token
 from app.machine_learning.schemas.gender_detect_input import GenderDetectNameInput
@@ -20,13 +21,19 @@ router = APIRouter(
 example_name_input = {"name_input": ["Trần Văn A", "Nguyễn Thị B"]}
 
 @router.post("/predict_prob")
-def predict(c_input: GenderDetectNameInput = Body(..., example=example_name_input)):
+def predict(c_input: Annotated[
+                        GenderDetectNameInput,
+                        Body(examples=example_name_input)
+                    ]):
     t = GenderDetectionNameBayes().predict_prob(c_input)
     return JSONResponse(t)
 
 
 @router.post("/predict")
-def predict(c_input: GenderDetectNameInput = Body(..., example=example_name_input)):
+def predict(c_input: Annotated[
+                                GenderDetectNameInput, 
+                                Body(examples=example_name_input)
+                            ]):
     t = GenderDetectionNameBayes().predict(c_input)
     return JSONResponse(t)
 

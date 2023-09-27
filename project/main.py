@@ -4,8 +4,6 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Depends, FastAPI
 from datetime import timedelta
 from app.api.api_v1.api import api_router
-# from app.controller.access import create_access_token
-# from app.models.simple_users import fake_users_db
 
 description = """
 Data API helps you do awesome stuff.

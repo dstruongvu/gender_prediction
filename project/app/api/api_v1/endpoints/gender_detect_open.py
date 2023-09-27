@@ -7,6 +7,7 @@ from app.machine_learning.schemas.gender_detect_input import GenderDetectNameInp
 from app.machine_learning.controller.gender_detect import GenderDetectionNameBayes
 
 from app.logging.my_log_route import LogRoute
+from typing_extensions import Annotated
 
 
 router = APIRouter(
@@ -20,13 +21,19 @@ router = APIRouter(
 example_name_input = {"name_input": ["Trần Văn A", "Nguyễn Thị B"]}
 
 @router.post("/predict_prob")
-def predict(c_input: GenderDetectNameInput = Body(..., example=example_name_input)):
+def predict(c_input: Annotated[
+                                GenderDetectNameInput, 
+                                Body(examples=example_name_input)
+                            ]):
     t = GenderDetectionNameBayes().predict_prob(c_input)
     return JSONResponse(t)
 
 
 @router.post("/predict")
-def predict(c_input: GenderDetectNameInput = Body(..., example=example_name_input)):
+def predict(c_input: Annotated[
+                        GenderDetectNameInput,
+                        Body(examples=example_name_input)
+                    ]):
     t = GenderDetectionNameBayes().predict(c_input)
     return JSONResponse(t)
 
