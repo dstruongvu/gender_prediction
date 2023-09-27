@@ -2,4 +2,4 @@
 .ipynb_checkpoints
 .vscode
 project/logs/*
-project/config/*
+project/app/config/*
