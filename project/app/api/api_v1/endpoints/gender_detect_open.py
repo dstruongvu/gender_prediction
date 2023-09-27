@@ -18,7 +18,7 @@ router = APIRouter(
     route_class=LogRoute
 )
 
-example_name_input = {"name_input": ["Trần Văn A", "Nguyễn Thị B"]}
+example_name_input = [{"name_input": ["Trần Văn A", "Nguyễn Thị B"]}]
 
 @router.post("/predict_prob")
 def predict(c_input: Annotated[

@@ -1,7 +1,7 @@
 from logging import Handler, getLogger
 from traceback import print_exc
 import psycopg2
-from app.settings import generic as gns
+from app.config import cfg_log as cfl
 from app.utils.common import get_current_vn_time
 
 
@@ -12,7 +12,7 @@ class DBHandler(Handler):
         super().__init__(level)
 
         #
-        obj_db = gns.LOG_CONFIG
+        obj_db = cfl.LOG_CONFIG
         connection_string = obj_db['drivername'] + '://' + obj_db['username'] + ':' + str(
             obj_db['password']) + '@' + str(
             obj_db['host']) + ':' + str(obj_db['port']) + '/' + obj_db['database']
