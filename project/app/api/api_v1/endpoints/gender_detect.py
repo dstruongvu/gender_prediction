@@ -9,7 +9,6 @@ from app.machine_learning.controller.gender_detect import GenderDetectionNameBay
 
 from app.logging.my_log_route import LogRoute
 
-
 router = APIRouter(
     prefix="/gender_detect/name",
     tags=["gender_detect"],
