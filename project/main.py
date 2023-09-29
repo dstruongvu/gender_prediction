@@ -3,7 +3,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import Depends, FastAPI
 from datetime import timedelta
+from functools import lru_cache
 from app.api.api_v1.api import api_router
+from app.my_config import Settings
 
 description = """
 Data API helps you do awesome stuff.
@@ -22,6 +24,10 @@ app = FastAPI(
         "name": "truongvv@gmail.com",
     },
 )
+
+@lru_cache()
+def get_settings():
+    return Settings()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")

@@ -3,3 +3,4 @@
 .vscode
 project/logs/*
 project/app/config/*
+__pycache__/
