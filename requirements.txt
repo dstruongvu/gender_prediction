@@ -32,4 +32,5 @@ unidecode
 openpyxl
 pytest
 httpx
+pydantic_settings
 
