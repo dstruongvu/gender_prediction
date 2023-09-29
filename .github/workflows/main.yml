@@ -46,7 +46,10 @@ jobs:
       - name: Build and Run Test
         run: . venv/bin/activate && pytest
         env:
-          SECRET_KEY
+          SECRET_KEY: ${{ secrets.AUTH_SECRET_KEY }}
+          ALGORITHM: ${{ secrets.AUTH_ALGORITHM }}
+          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
 
       - name: Create Zipfile archive of Dependencies
         run: |
